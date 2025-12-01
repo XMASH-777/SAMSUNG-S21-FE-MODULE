@@ -371,3 +371,52 @@ reboot
 ```
 getprop | grep -i qemu
 ```
+🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀🎀
+# ANTI EMULATOR 100 💯 
+# CHECK 
+```
+resetprop -n ro.qemu.hw.mainkeys 0
+```
+# CHECK 2
+```
+getprop ro.qemu.hw.mainkeys
+```
+# ຖ້າ 0 ແມ່ນຜ່ານ 100
+
+
+# ✅ เพิ่ม patch เข้าภายในโมดูลให้ถาวร
+
+# แก้ไฟล์
+/data/adb/modules/s21fe_full_spoof/service.sh
+โดยเพิ่มบรรทัดนี้:
+```
+resetprop -n ro.qemu.hw.mainkeys 0
+```
+```
+#!/system/bin/sh
+resetprop -n ro.build.fingerprint "samsung/r9qxx/r9q:13/TP1A.220624.014/G990BXXS6FWL2:user/release-keys"
+resetprop -n ro.product.model "SM-G990B"
+resetprop -n ro.product.brand "samsung"
+resetprop -n ro.product.device "r9q"
+resetprop -n ro.product.manufacturer "samsung"
+resetprop -n ro.vendor.build.fingerprint "samsung/r9qxx/r9q:13/TP1A.220624.014/G990BXXS6FWL2:user/release-keys"
+
+#สำคัญมาก — ปิดสัญญาณ emulator
+resetprop -n ro.kernel.qemu 0
+resetprop -n ro.qemu.hw.mainkeys 0
+```
+# ຈາກນັ້ນ
+```
+chmod 755 /data/adb/modules/s21fe_full_spoof/service.sh
+reboot
+```
+# ຫລັງລີບູດ ເຊັກອີກເທື່ອ
+```
+getprop ro.kernel.qemu
+getprop ro.qemu.hw.mainkeys
+```
+# ຖ້າຂື້ນ
+0
+0
+✅
+
